@@ -1,4 +1,5 @@
 # Python client for interacting with Atomix clusters.
+from cluster import AtomixCluster
 from primitives import Map, Set, Value, Counter, Lock
 
 import requests
@@ -10,10 +11,8 @@ class AtomixClient(object):
     def __init__(self, host='127.0.0.1', port=5678):
         self.host = host
         self.port = port
-
-    @property
-    def address(self):
-        return 'http://{}:{}'.format(self.host, self.port)
+        self.address = 'http://{}:{}'.format(self.host, self.port)
+        self.cluster = AtomixCluster(self)
 
     def status(self):
         try:
