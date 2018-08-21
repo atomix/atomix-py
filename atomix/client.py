@@ -16,7 +16,7 @@ class AtomixClient(object):
 
     def status(self):
         try:
-            response = requests.get(self._format_url('/status'))
+            response = requests.get(self._format_url('/v1/status'))
             return response.status_code == 200
         except requests.exceptions.ConnectionError, e:
             return False
